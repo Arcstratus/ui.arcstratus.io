@@ -1,24 +1,24 @@
 <script lang="ts" module>
 	import type { Snippet } from 'svelte';
 
-	interface HeaderBrandClasses {
+	interface FooterBrandClasses {
 		container?: string;
 		link?: string;
 		title?: string;
 	}
 
-	interface HeaderBrandProps {
+	interface FooterBrandProps {
 		title: string;
 		icon?: Snippet;
 		href?: string;
-		classes?: HeaderBrandClasses;
+		classes?: FooterBrandClasses;
 	}
 </script>
 
 <script lang="ts">
 	import { cn } from '$lib/utils';
 
-	const { icon, title, href = '/', classes }: HeaderBrandProps = $props();
+	const { icon, title, href = '/', classes }: FooterBrandProps = $props();
 </script>
 
 <div class={cn('flex items-center gap-2', classes?.container)}>
@@ -28,9 +28,9 @@
 
 	{#if href}
 		<a {href} class={cn('hover:underline', classes?.link)}>
-			<h1 class={cn('text-2xl font-bold', classes?.title)}>{title}</h1>
+			<h1 class={cn('text-xl font-bold', classes?.title)}>{title}</h1>
 		</a>
 	{:else}
-		<h1 class={cn('text-2xl font-bold', classes?.title)}>{title}</h1>
+		<h1 class={cn('text-xl font-bold', classes?.title)}>{title}</h1>
 	{/if}
 </div>

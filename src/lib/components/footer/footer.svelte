@@ -19,7 +19,13 @@
 </script>
 
 <footer class={cn('relative w-full', classes?.footer)}>
-	<div class={cn('container mx-auto flex min-h-16 items-center p-4', classes?.container)}>
+	<div
+		class={cn(
+			'container mx-auto px-4',
+			'flex min-h-16 items-center justify-between gap-4',
+			classes?.container
+		)}
+	>
 		{@render children()}
 	</div>
 </footer>

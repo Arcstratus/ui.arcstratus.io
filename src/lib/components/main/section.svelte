@@ -19,7 +19,7 @@
 </script>
 
 <section class={cn('relative w-full', classes?.section)}>
-	<div class={cn('container mx-auto p-8', classes?.container)}>
+	<div class={cn('container mx-auto px-4', classes?.container)}>
 		{@render children()}
 	</div>
 </section>

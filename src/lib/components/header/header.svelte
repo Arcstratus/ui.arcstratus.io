@@ -49,7 +49,7 @@
 
 <header
 	class={cn(
-		'bg-background fixed inset-x-0 top-0 z-90 transition-transform duration-300 ease-in-out',
+		'fixed inset-x-0 top-0 z-90 transition-transform duration-300 ease-in-out',
 		isHidden && '-translate-y-full ',
 		classes?.header
 	)}
