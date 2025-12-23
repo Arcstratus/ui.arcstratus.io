@@ -78,10 +78,26 @@ export async function add(components: string[]) {
         continue;
       }
 
+      const targetDir = path.join(process.cwd(), 'src/lib/components/ui', component);
+
+      // Check if component already exists
+      if (fs.existsSync(targetDir)) {
+        const response = await prompts({
+          type: 'confirm',
+          name: 'overwrite',
+          message: `Component "${component}" already exists. Do you want to overwrite it?`,
+          initial: false
+        });
+
+        if (!response.overwrite) {
+          console.log(pc.yellow(`Skipped ${component}`));
+          continue;
+        }
+      }
+
       console.log(pc.cyan(`Adding ${component}...`));
 
       // Create target directory
-      const targetDir = path.join(process.cwd(), 'src/lib/components/ui', component);
       fs.mkdirSync(targetDir, { recursive: true });
 
       // Download and save each file
