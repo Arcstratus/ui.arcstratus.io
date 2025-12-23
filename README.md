@@ -11,7 +11,8 @@ npx @arcstratus/ui init
 ```
 
 This will:
-- Install `clsx` and `tailwind-merge` dependencies
+- Install `clsx`, `tailwind-merge`, and `daisyui` dependencies
+- Configure DaisyUI plugin in your CSS file (`app.css` or `layout.css`)
 - Create `src/lib/utils.ts` with the `cn()` utility function
 
 ## Usage

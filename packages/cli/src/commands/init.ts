@@ -27,7 +27,7 @@ async function detectPackageManager(): Promise<'npm' | 'pnpm' | 'yarn' | 'bun'> 
 }
 
 function getInstallCommand(packageManager: string): string {
-  const packages = 'clsx tailwind-merge';
+  const packages = 'clsx tailwind-merge daisyui@latest';
   switch (packageManager) {
     case 'pnpm':
       return `pnpm add ${packages}`;
@@ -38,6 +38,38 @@ function getInstallCommand(packageManager: string): string {
     default:
       return `npm install ${packages}`;
   }
+}
+
+function findCssFile(cwd: string): string | null {
+  // Check for app.css first (older version)
+  const appCssPath = path.join(cwd, 'src/app.css');
+  if (fs.existsSync(appCssPath)) {
+    return appCssPath;
+  }
+
+  // Check for layout.css (newer version)
+  const layoutCssPath = path.join(cwd, 'src/layout.css');
+  if (fs.existsSync(layoutCssPath)) {
+    return layoutCssPath;
+  }
+
+  return null;
+}
+
+function addDaisyUIPlugin(cssPath: string): void {
+  const pluginLine = '@plugin "daisyui";';
+  const content = fs.readFileSync(cssPath, 'utf-8');
+
+  // Check if plugin already exists
+  if (content.includes(pluginLine)) {
+    console.log(pc.gray('DaisyUI plugin already configured in CSS'));
+    return;
+  }
+
+  // Append plugin line
+  const newContent = content + '\n' + pluginLine + '\n';
+  fs.writeFileSync(cssPath, newContent, 'utf-8');
+  console.log(pc.green(`✓ Added DaisyUI plugin to ${path.basename(cssPath)}`));
 }
 
 export async function init(options: InitOptions = {}) {
@@ -55,7 +87,7 @@ export async function init(options: InitOptions = {}) {
       const response = await prompts({
         type: 'confirm',
         name: 'proceed',
-        message: `This will install ${pc.cyan('clsx')} and ${pc.cyan('tailwind-merge')}. Continue?`,
+        message: `This will install ${pc.cyan('clsx')}, ${pc.cyan('tailwind-merge')}, and ${pc.cyan('daisyui')}. Continue?`,
         initial: true
       });
 
@@ -76,6 +108,18 @@ export async function init(options: InitOptions = {}) {
     } catch (error) {
       console.error(pc.red('Failed to install dependencies'));
       throw error;
+    }
+
+    // Configure DaisyUI in CSS file
+    console.log(pc.cyan('\nConfiguring DaisyUI...'));
+    const cssPath = findCssFile(cwd);
+
+    if (cssPath) {
+      addDaisyUIPlugin(cssPath);
+    } else {
+      console.log(pc.yellow('⚠ Could not find app.css or layout.css'));
+      console.log(pc.gray('  Please manually add the following line to your CSS file:'));
+      console.log(pc.cyan('  @plugin "daisyui";'));
     }
 
     // Create lib directory if it doesn't exist
