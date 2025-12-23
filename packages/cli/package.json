@@ -1,6 +1,6 @@
 {
 	"name": "@arcstratus/ui",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"description": "CLI for adding Arcstratus UI components to your project",
 	"type": "module",
 	"bin": {
