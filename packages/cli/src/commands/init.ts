@@ -27,7 +27,7 @@ async function detectPackageManager(): Promise<'npm' | 'pnpm' | 'yarn' | 'bun'> 
 }
 
 function getInstallCommand(packageManager: string): string {
-	const packages = 'clsx tailwind-merge daisyui@latest';
+	const packages = 'clsx tailwind-merge daisyui@latest @tabler/icons-svelte';
 	switch (packageManager) {
 		case 'pnpm':
 			return `pnpm add ${packages}`;
