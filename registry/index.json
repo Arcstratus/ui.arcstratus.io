@@ -1,0 +1,9 @@
+{
+  "header": {
+    "files": [
+      "header.svelte",
+      "index.ts"
+    ],
+    "path": "src/lib/components/header"
+  }
+}
