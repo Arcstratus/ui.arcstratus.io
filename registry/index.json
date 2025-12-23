@@ -11,7 +11,7 @@
 		"path": "src/lib/components/header"
 	},
 	"footer": {
-		"files": ["footer.svelte", "index.ts"],
+		"files": ["footer-brand.svelte", "footer-copyright.svelte", "footer.svelte", "index.ts"],
 		"path": "src/lib/components/footer"
 	},
 	"main": {
