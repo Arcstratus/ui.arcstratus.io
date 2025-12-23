@@ -3,9 +3,7 @@ import path from 'path';
 import https from 'https';
 import pc from 'picocolors';
 import prompts from 'prompts';
-
-const REGISTRY_URL = 'https://raw.githubusercontent.com/YOUR_USERNAME/arcstratus/main/ui/registry/index.json';
-const COMPONENTS_BASE_URL = 'https://raw.githubusercontent.com/YOUR_USERNAME/arcstratus/main/ui/src/lib/components';
+import { REGISTRY_URL, COMPONENTS_BASE_URL } from '../constants.js';
 
 interface ComponentInfo {
   files: string[];
