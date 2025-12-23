@@ -5,6 +5,6 @@
 	const { children } = $props();
 </script>
 
-<Header>this is header</Header>
+<Header classes={{ container: 'bg-red-500' }}>this is header</Header>
 
 {@render children()}
