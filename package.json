@@ -51,5 +51,10 @@
 	},
 	"keywords": [
 		"svelte"
-	]
+	],
+	"dependencies": {
+		"clsx": "^2.1.1",
+		"daisyui": "^5.5.14",
+		"tailwind-merge": "^3.4.0"
+	}
 }
